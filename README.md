@@ -24,21 +24,7 @@ The **Neo Micromouse Project** is an embedded systems project developed using th
 - **Custom Libraries:** Reusable libraries tailored for the micromouse functionalities.
 - **Arduino UNO Compatible:** Designed to run on the Arduino UNO board with ease.
 
-## Directory Structure
-
-```plaintext
-.
-├── include
-├── lib
-├── src
-│   └── main.cpp
-├── test
-├── .gitignore
-├── platformio.ini
-└── README.md
-```
-
-### Description
+## Project Structure
 
 - **include/**: Contains project header files for declarations and macro definitions.
 - **lib/**: Private libraries for the project.
