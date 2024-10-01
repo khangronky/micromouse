@@ -101,16 +101,11 @@ Tests are located in the `test/` directory and utilize PlatformIO's built-in tes
 
 No library is used in this project.
 
-## Contributing
+## Contributions
 
 Contributions are welcome! Please follow these steps:
 
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/khangronky/micromouse.git
-   cd micromouse
-   ```
+1. **Fork the Repository**
 
 2. **Create a Feature Branch**
 
@@ -131,12 +126,6 @@ Contributions are welcome! Please follow these steps:
    ```
 
 5. **Open a Pull Request**
-
-## Acknowledgements
-
-- [PlatformIO](https://platformio.org/)
-- [Arduino](https://www.arduino.cc/)
-- [GCC Documentation on Header Files](https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html)
 
 ---
 
