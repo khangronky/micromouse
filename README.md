@@ -1,7 +1,5 @@
 # Neo Micromouse Project
 
-![Project Logo](path/to/logo.png) <!-- Optional: Add a project logo -->
-
 ## Table of Contents
 
 - [Overview](#overview)
@@ -31,19 +29,10 @@ The **Neo Micromouse Project** is an embedded systems project developed using th
 ```plaintext
 .
 ├── include
-│   └── header.h
 ├── lib
-│   ├── Foo
-│   │   ├── Foo.c
-│   │   └── Foo.h
-│   └── Bar
-│       ├── Bar.c
-│       └── Bar.h
 ├── src
-│   ├── main.cpp
-│   └── main.c
+│   └── main.cpp
 ├── test
-│   └── test_main.cpp
 ├── .gitignore
 ├── platformio.ini
 └── README.md
@@ -52,7 +41,7 @@ The **Neo Micromouse Project** is an embedded systems project developed using th
 ### Description
 
 - **include/**: Contains project header files for declarations and macro definitions.
-- **lib/**: Houses project-specific libraries (`Foo` and `Bar`) compiled into static libraries.
+- **lib/**: Private libraries for the project.
 - **src/**: Source files for the main application.
 - **test/**: Unit tests for the project using PlatformIO Test Runner.
 - **.gitignore**: Specifies files and directories to be ignored by Git.
@@ -63,6 +52,8 @@ The **Neo Micromouse Project** is an embedded systems project developed using th
 
 ### Prerequisites
 
+- **Arduino IDE**: Ensure you have Arduino IDE installed.
+- **VS Code**: Ensure you have VS Code installed.
 - **PlatformIO**: Ensure you have PlatformIO installed. You can install it as a [VS Code extension](https://platformio.org/install/ide?install=vscode) or as a standalone CLI.
 
 ### Setup
@@ -70,8 +61,8 @@ The **Neo Micromouse Project** is an embedded systems project developed using th
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/neo-micromouse-project.git
-   cd neo-micromouse-project
+   git clone https://github.com/khangronky/micromouse.git
+   cd micromouse
    ```
 
 2. **Install Dependencies**
@@ -122,53 +113,19 @@ Tests are located in the `test/` directory and utilize PlatformIO's built-in tes
 
 ## Libraries
 
-### Foo
-
-A custom library providing [describe functionality].
-
-```cpp:lib/Foo/Foo.h
-#ifndef FOO_H
-#define FOO_H
-
-int fooFunction(int a, int b);
-
-#endif // FOO_H
-```
-
-```cpp:lib/Foo/Foo.c
-#include "Foo.h"
-
-int fooFunction(int a, int b) {
-    return a + b;
-}
-```
-
-### Bar
-
-A custom library providing [describe functionality].
-
-```cpp:lib/Bar/Bar.h
-#ifndef BAR_H
-#define BAR_H
-
-int barFunction(int a, int b);
-
-#endif // BAR_H
-```
-
-```cpp:lib/Bar/Bar.c
-#include "Bar.h"
-
-int barFunction(int a, int b) {
-    return a * b;
-}
-```
+No library is used in this project.
 
 ## Contributing
 
 Contributions are welcome! Please follow these steps:
 
-1. **Fork the Repository**
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/khangronky/micromouse.git
+   cd micromouse
+   ```
+
 2. **Create a Feature Branch**
 
    ```bash
@@ -176,6 +133,11 @@ Contributions are welcome! Please follow these steps:
    ```
 
 3. **Commit Your Changes**
+
+   ```bash
+   git commit -m "Add some feature"
+   ```
+
 4. **Push to the Branch**
 
    ```bash
@@ -183,12 +145,6 @@ Contributions are welcome! Please follow these steps:
    ```
 
 5. **Open a Pull Request**
-
-Please ensure your code adheres to the project's coding standards and includes necessary tests.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to use and modify it according to the terms of the license.
 
 ## Acknowledgements
 
@@ -198,4 +154,4 @@ This project is licensed under the [MIT License](LICENSE). Feel free to use and 
 
 ---
 
-For any questions or support, please open an issue in the [GitHub repository](https://github.com/yourusername/neo-micromouse-project/issues).
+For any questions or support, please open an issue in the [GitHub repository](https://github.com/khangronky/micromouse/issues).
