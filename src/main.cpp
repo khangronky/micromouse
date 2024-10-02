@@ -1,22 +1,41 @@
 #include <Arduino.h>
+#include <Motor.h>
 
-int trigPin = A0; // Define trigPin as A0
-int echoPin = A1; // Define echoPin as A1
+Motor motor(5, 6, 7, 8, 9, 10);
 
 void setup() {
-  Serial.begin(9600);
-  pinMode(trigPin, OUTPUT); // Set trigPin as OUTPUT
-  pinMode(echoPin, INPUT);  // Set echoPin as INPUT
+  motor.begin();
 }
 
 void loop() {
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  double duration = pulseIn(echoPin, HIGH);
-  double distance = (duration * 0.0343) / 2;
-  Serial.println(distance);
-  delay(500);
+  forward();
+  delay(1000);
+  backward();
+  delay(1000);
+  left();
+  delay(1000);
+  right();
+  delay(1000);
+  stop();
+  delay(1000);
+}
+
+void forward() {
+  motor.action(255, 255);
+}
+
+void backward() {
+  motor.action(-255, -255);
+}
+
+void left() {
+  motor.action(255, -255);
+}
+
+void right() {
+  motor.action(-255, 255);
+}
+
+void stop() {
+  motor.action(0, 0);
 }
