@@ -5,12 +5,12 @@
 
 class InfraredSensor {
 public:
-    InfraredSensor(int sensorPin); // Constructor with sensor pin initialization
-    void begin(); // Function to initialize the sensor pin
-    bool isObstacleDetected(); 
+    InfraredSensor(int sensorPin);
+    void begin();
+    int getValue();
 
 private:
-    int sensorPin; // Variable to store sensor pin
+    int sensorPin;
 };
 
 #endif
