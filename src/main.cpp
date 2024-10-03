@@ -1,41 +1,19 @@
 #include <Arduino.h>
-#include <Motor.h>
+#include <UltrasonicSensor.h>
 
-Motor motor(5, 6, 7, 8, 9, 10);
-
-void forward() {
-  motor.action(255, 255);
-}
-
-void backward() {
-  motor.action(-255, -255);
-}
-
-void left() {
-  motor.action(255, -255);
-}
-
-void right() {
-  motor.action(-255, 255);
-}
-
-void stop() {
-  motor.action(0, 0);
-}
+UltrasonicSensor us1(A0, A1);
+UltrasonicSensor us2(A4, A5);
 
 void setup() {
-  motor.begin();
+    Serial.begin(9600);
+    us1.begin();
+    us2.begin();
 }
 
 void loop() {
-  forward();
-  delay(1000);
-  backward();
-  delay(1000);
-  left();
-  delay(1000);
-  right();
-  delay(1000);
-  stop();
-  delay(1000);
+    double distance1 = us1.getDistance();
+    double distance2 = us2.getDistance();
+    Serial.println("Distance 1: " + String(distance1) + " cm");
+    Serial.println("Distance 2: " + String(distance2) + " cm");
+    delay(1000);
 }
