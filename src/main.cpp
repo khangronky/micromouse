@@ -1,6 +1,6 @@
 #include "InfraredSensor.h"
 
-InfraredSensor irSensor(A0, 500); // Initialize the sensor on pin A0 with a sensitivity threshold of 500
+InfraredSensor irSensor(5);
 
 void setup() {
     Serial.begin(9600);
@@ -8,13 +8,7 @@ void setup() {
 }
 
 void loop() {
-    if (irSensor.isObstacleDetected()) {
-        Serial.println("Obstacle detected!");
-    } else {
-        Serial.println("No obstacle.");
-    }
-
-    int distance = irSensor.getDistance();
+    int distance = irSensor.getValue();
     Serial.print("Distance reading: ");
     Serial.println(distance); // Print the raw analog value (for monitoring)
 
