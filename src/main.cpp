@@ -1,6 +1,6 @@
 #include <InfraredSensor.h>
 
-InfraredSensor irSensor(7);
+InfraredSensor irSensor(7, 500);
 
 void setup() {
     Serial.begin(9600);
@@ -13,5 +13,9 @@ void loop() {
     } else {
         Serial.println("No obstacle.");
     }
-    delay(500); 
+      int distance = irSensor.getDistance();
+    Serial.print("Distance reading: ");
+    Serial.println(distance); // Print the raw analog value (for monitoring)
+
+    delay(500); // Delay to avoid flooding the serial monitor
 }
