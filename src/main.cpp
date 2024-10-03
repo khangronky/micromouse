@@ -1,6 +1,6 @@
-#include <InfraredSensor.h>
+#include "InfraredSensor.h"
 
-InfraredSensor irSensor(A0); // Pin A0 for the infrared sensor (analog pin)
+InfraredSensor irSensor(A0, 500); // Initialize the sensor on pin A0 with a sensitivity threshold of 500
 
 void setup() {
     Serial.begin(9600);
@@ -8,8 +8,15 @@ void setup() {
 }
 
 void loop() {
-    int distance = irSensor.getDistance(); // Get the analog distance value
+    if (irSensor.isObstacleDetected()) {
+        Serial.println("Obstacle detected!");
+    } else {
+        Serial.println("No obstacle.");
+    }
+
+    int distance = irSensor.getDistance();
     Serial.print("Distance reading: ");
-    Serial.println(distance); // Print the distance value to the Serial Monitor
-    delay(500); // Add delay to avoid flooding the serial monitor
+    Serial.println(distance); // Print the raw analog value (for monitoring)
+
+    delay(500); // Delay to avoid flooding the serial monitor
 }
