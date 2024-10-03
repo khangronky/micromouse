@@ -1,18 +1,13 @@
 #include <InfraredSensor.h>
 
-InfraredSensor::InfraredSensor(int sensorPin, int sensitivityThreshold)
-    : sensorPin(sensorPin), limit(sensitivityThreshold) {}
+InfraredSensor::InfraredSensor(int sensorPin) 
+    : sensorPin(sensorPin) {}
 
 void InfraredSensor::begin() {
-    pinMode(sensorPin, INPUT); // Initialize the analog input pin
+    pinMode(sensorPin, INPUT); // Analog pins are automatically set to input, but it’s good practice
 }
 
-bool InfraredSensor::isDetected() {
-   
-    int sensorValue = getDistance(); // Get the raw analog reading
-    return sensorValue >= limit;
-}
-
-int InfraredSensor::getDistance(){
-    return digitalRead(sensorPin);
+int InfraredSensor::getDistance() {
+    int sensorValue = analogRead(sensorPin); // Read the analog value from the sensor pin
+    return sensorValue; // Return the raw analog value (0-1023)
 }
