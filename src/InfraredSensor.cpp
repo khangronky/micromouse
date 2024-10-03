@@ -7,7 +7,7 @@ void InfraredSensor::begin() {
     pinMode(sensorPin, INPUT);
 }
 
-bool InfraredSensor::isObstacleDetected() {
+bool InfraredSensor::isDetected() {
     int sensorValue = digitalRead(sensorPin); 
     return sensorValue == LOW; 
 }
