@@ -4,13 +4,12 @@
 
 - [Overview](#overview)
 - [Features](#features)
-- [Directory Structure](#directory-structure)
+- [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Testing](#testing)
 - [Libraries](#libraries)
-- [Contributing](#contributing)
-- [License](#license)
+- [Contributions](#contributions)
 
 ## Overview
 
