@@ -10,7 +10,7 @@ public:
     int getValue();
 
 private:
-    int sensorPin;
+    int sensorPin, sensorValue;
 };
 
 #endif

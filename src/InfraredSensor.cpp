@@ -8,5 +8,6 @@ void InfraredSensor::begin() {
 }
 
 int InfraredSensor::getValue() {
-    return digitalRead(sensorPin);
+    sensorValue = analogRead(sensorPin);
+    return sensorValue;
 }
