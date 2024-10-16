@@ -1,54 +1,52 @@
 #include <Arduino.h>
 #include <InfraredSensor.h>
+#include <UltrasonicSensor.h>
 #include <Motor.h>
 
-int sensorPin = A0;
-int sensorValue = 0;
-float threshold = 5;
+int sensorPinA = A0;
+int sensorPinB = A1;
 
-InfraredSensor irSensor(sensorPin);
+int trigPin = 3;
+int echoPin = 2;
 
-int IN1 = 2;
-int IN2 = 4;
+int ENA = 10;
+int IN1 = 9;
+int IN2 = 8;
 int IN3 = 7;
-int IN4 = 8;
-int ENA = 9;
-int ENB = 10;
+int IN4 = 6;
+int ENB = 5;
 
+InfraredSensor irSensorA(sensorPinA);
+InfraredSensor irSensorB(sensorPinB);
+UltrasonicSensor ultrasonicSensor(trigPin, echoPin);
 Motor motorA(IN1, IN2, ENA);
 Motor motorB(IN3, IN4, ENB);
 
-float convertToCM(int sensorValue) {
-  float cm = (sensorValue / 45.0) * 5.0;
-  return cm;
-}
-
 void setup() {
   Serial.begin(9600);
-  irSensor.begin();
+  irSensorA.begin();
+
   motorA.begin();
   motorB.begin();
 }
 
 void loop() {
-  sensorValue = irSensor.getValue();
-
-  float distance = convertToCM(sensorValue);
-  Serial.print("Distance: ");
-  Serial.print(distance);
+  int irValueA = irSensorA.getValue();
+  float irDistanceA = (irValueA / 45.0) * 5.0;
+  Serial.print("Infrared A distance: ");
+  Serial.print(irDistanceA);
   Serial.println(" cm");
 
-  if (distance >= threshold) {
-    motorA.action(255);
-    motorB.action(255);
-    Serial.print("Object detected at ");
-    Serial.print(distance);
-    Serial.println(" cm.");
-  } else {
-    motorA.action(0);
-    motorB.action(0);
-    Serial.println("No object detected.");
-  }
+  int irValueB = irSensorB.getValue();
+  float irDistanceB = (irValueB / 45.0) * 5.0;
+  Serial.print("Infrared B distance: ");
+  Serial.print(irDistanceB);
+  Serial.println(" cm");
+
+  float ultrasonicDistance = ultrasonicSensor.getDistance();
+  Serial.print("Ultrasonic distance: ");
+  Serial.print(ultrasonicDistance);
+  Serial.println(" cm");
 
   delay(500);
 }
