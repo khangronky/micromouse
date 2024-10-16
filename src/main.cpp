@@ -9,6 +9,8 @@ int sensorPinB = A1;
 int trigPin = 3;
 int echoPin = 2;
 
+int threshold = 5;
+
 int ENA = 10;
 int IN1 = 9;
 int IN2 = 8;
@@ -48,5 +50,32 @@ void loop() {
   Serial.print(ultrasonicDistance);
   Serial.println(" cm");
 
-  delay(500);
+  bool hasFrontWall = ultrasonicDistance < threshold;
+  bool hasLeftWall = irDistanceB < threshold;
+  bool hasRightWall = irDistanceA < threshold;
+
+  if (!hasFrontWall && hasLeftWall && hasRightWall) {
+    // Move forward
+    motorA.action(255);
+    motorB.action(255);
+    delay(500);
+  }
+  if (hasFrontWall && !hasLeftWall && hasRightWall) {
+    // Turn left
+    motorA.action(-255);
+    motorB.action(255);
+    delay(500);
+  }
+  if (hasFrontWall && hasLeftWall && !hasRightWall) {
+    // Turn right
+    motorA.action(255);
+    motorB.action(-255);
+    delay(500);
+  }
+  if (hasFrontWall && hasLeftWall && hasRightWall) {
+    // Turn back (right)
+    motorA.action(255);
+    motorB.action(-255);
+    delay(1000);
+  }
 }
