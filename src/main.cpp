@@ -7,7 +7,7 @@ int sensorPinA = A0;
 int sensorPinB = A1;
 
 int trigPin = 3;
-int echoPin = 2;
+int echoPin = 11;
 
 int threshold = 5;
 
@@ -27,7 +27,8 @@ Motor motorB(IN3, IN4, ENB);
 void setup() {
   Serial.begin(9600);
   irSensorA.begin();
-
+  irSensorB.begin();
+  ultrasonicSensor.begin();
   motorA.begin();
   motorB.begin();
 }
@@ -78,4 +79,5 @@ void loop() {
     motorB.action(-255);
     delay(1000);
   }
+  delay(500); //for serial monitor speed supervision
 }
