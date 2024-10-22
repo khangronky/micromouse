@@ -1,7 +1,5 @@
-#ifndef InfraredSensor_h
-#define InfraredSensor_h
-
-#include <Arduino.h>
+#ifndef InfraredSensor_H
+#define InfraredSensor_H
 
 class InfraredSensor {
 public:

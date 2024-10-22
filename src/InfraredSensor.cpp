@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "InfraredSensor.h"
 
 InfraredSensor::InfraredSensor(int sensorPin)

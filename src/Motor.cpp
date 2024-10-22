@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "Motor.h"
 
 Motor::Motor(int IN1, int IN2, int EN)

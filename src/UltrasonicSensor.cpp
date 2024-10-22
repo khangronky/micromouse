@@ -1,4 +1,5 @@
-#include <UltrasonicSensor.h>
+#include <Arduino.h>
+#include "UltrasonicSensor.h"
 
 UltrasonicSensor::UltrasonicSensor(int trigPin, int echoPin) 
     : trigPin(trigPin), echoPin(echoPin) {}
