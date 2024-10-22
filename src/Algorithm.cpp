@@ -4,8 +4,8 @@
 
 #include "API.h"
 
-#define MAZE_WIDTH 32
-#define MAZE_HEIGHT 32
+#define MAZE_WIDTH 16
+#define MAZE_HEIGHT 16
 unsigned short bfs_map[MAZE_HEIGHT][MAZE_WIDTH];
 const unsigned short INF = MAZE_WIDTH * MAZE_HEIGHT + 1;
 uint8_t maze[MAZE_HEIGHT][MAZE_WIDTH];
@@ -71,8 +71,8 @@ pos currPos = startPos[0];
 int facing = 1;  // 0: left 1: up 2: right 3: down
 
 bool isValid(const pos& p) {
-  return ((p.x >= 0) && (p.y >= 0) && (p.x < MAZE_WIDTH) &&
-          (p.y < MAZE_HEIGHT));
+  return ((p.x >= 0) && (p.y >= 0) &&
+          (p.x < MAZE_WIDTH) && (p.y < MAZE_HEIGHT));
 }
 
 bool isGoal(const pos& p) {
@@ -108,7 +108,7 @@ void bfs() {
     q.pop();
     // get surrounding of a block
     block = maze[p_front.y][p_front.x];
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < 4; ++i) {
       if (!(block & (1 << i))) {
         p_temp = p_front + drs[i];
         if (!isValid(p_temp) || bfs_map[p_temp.y][p_temp.x] != INF ||
@@ -117,6 +117,7 @@ void bfs() {
         bfs_map[p_temp.y][p_temp.x] = bfs_map[p_front.y][p_front.x] + 1;
         q.push(p_temp);
       }
+    }
   }
 }
 
@@ -136,7 +137,7 @@ void st_bfs() {
     q.pop();
     // get surrounding of a block
     block = maze[p_front.y][p_front.x];
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < 4; ++i) {
       if (!(block & (1 << i))) {
         p_temp = p_front + drs[i];
         if (!isValid(p_temp) || bfs_map[p_temp.y][p_temp.x] != INF ||
@@ -145,6 +146,7 @@ void st_bfs() {
         bfs_map[p_temp.y][p_temp.x] = bfs_map[p_front.y][p_front.x] + 1;
         q.push(p_temp);
       }
+    }
   }
 }
 
@@ -223,6 +225,7 @@ int main(int argc, char* argv[]) {
   init();
   while (exploring) {
     for (int i = 0; i < 2; ++i) {
+      API::setColor(currPos.x, currPos.y, 'G');
       updateSurrounding();
       bfs();
       debugBFS();
@@ -247,6 +250,7 @@ int main(int argc, char* argv[]) {
   log("Done explore!");
   log("Run to finish!");
 
+  API::setColor(currPos.x, currPos.y, 'G');
   updateSurrounding();
   bfs();
   debugBFS();
