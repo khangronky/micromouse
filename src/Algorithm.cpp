@@ -5,8 +5,8 @@
 #include "Algorithm.h"
 #include "Controller.h"
 
-#define MAZE_WIDTH 16
-#define MAZE_HEIGHT 16
+#define MAZE_WIDTH 8
+#define MAZE_HEIGHT 8
 unsigned short bfs_map[MAZE_HEIGHT][MAZE_WIDTH];
 const unsigned short INF = MAZE_WIDTH * MAZE_HEIGHT + 1;
 uint8_t maze[MAZE_HEIGHT][MAZE_WIDTH];

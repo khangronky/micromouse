@@ -13,15 +13,12 @@
 
 ## Overview
 
-The **Neo Micromouse Project** is an embedded systems project developed using the Arduino framework and PlatformIO. This project aims to create a sophisticated micromouse capable of navigating mazes efficiently. Leveraging modular code architecture with dedicated libraries and comprehensive unit testing ensures reliability and scalability.
+The **Neo Micromouse Project** is developed using the Arduino framework and PlatformIO. This project aims to create a sophisticated micromouse capable of navigating mazes efficiently.
 
 ## Features
 
-- **Modular Architecture:** Organized codebase with separate directories for source files, headers, libraries, and tests.
-- **PlatformIO Integration:** Efficient build and dependency management using PlatformIO.
-- **Unit Testing:** Comprehensive tests to ensure code quality and functionality.
-- **Custom Libraries:** Reusable libraries tailored for the micromouse functionalities.
-- **Arduino UNO Compatible:** Designed to run on the Arduino UNO board with ease.
+- **Bluetooth Control:** Control the micromouse through MIT App Inventor using HC-05 Bluetooth module.
+- **Maze Solving:** Solve the maze using Floodfill algorithm.
 
 ## Project Structure
 
@@ -37,8 +34,8 @@ The **Neo Micromouse Project** is an embedded systems project developed using th
 
 ### Prerequisites
 
-- **Arduino IDE**: Ensure you have Arduino IDE installed.
 - **VS Code**: Ensure you have VS Code installed.
+- **Arduino IDE**: Ensure you have Arduino IDE installed.
 - **PlatformIO**: Ensure you have PlatformIO installed. You can install it as a [VS Code extension](https://platformio.org/install/ide?install=vscode) or as a standalone CLI.
 
 ### Setup
@@ -98,7 +95,7 @@ Tests are located in the `test/` directory and utilize PlatformIO's built-in tes
 
 ## Libraries
 
-No library is used in this project.
+- **ArduinoSTL:** Support for C++ Standard Library on Arduino.
 
 ## Contributions
 

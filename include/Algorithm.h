@@ -3,8 +3,8 @@
 
 #include <ArduinoSTL.h>
 
-#define MAZE_WIDTH 16
-#define MAZE_HEIGHT 16
+#define MAZE_WIDTH 8
+#define MAZE_HEIGHT 8
 extern unsigned short bfs_map[MAZE_HEIGHT][MAZE_WIDTH];
 extern const unsigned short INF;
 extern uint8_t maze[MAZE_HEIGHT][MAZE_WIDTH];
