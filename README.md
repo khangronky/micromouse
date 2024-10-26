@@ -1,5 +1,7 @@
 # Neo Micromouse Project
 
+![Micromouse](micromouse.jpg)
+
 ## Table of Contents
 
 - [Overview](#overview)
