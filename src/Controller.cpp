@@ -13,12 +13,12 @@ int echoPin = 11;
 
 int threshold = 5;
 
-int ENA = 10;
-int IN1 = 9;
-int IN2 = 8;
-int IN3 = 7;
-int IN4 = 6;
-int ENB = 5;
+int ENA = 5;
+int IN1 = 6;
+int IN2 = 7;
+int IN3 = 9;
+int IN4 = 8;
+int ENB = 10;
 
 InfraredSensor irSensorA(sensorPinA);
 InfraredSensor irSensorB(sensorPinB);
@@ -40,7 +40,7 @@ void Controller::action(char command) {
         motorB.action(255);
     }
     if (command == 'F') {
-        motorA.action(255);
+        motorA.action(247);
         motorB.action(255);
     }
     if (command == 'E') {
@@ -65,8 +65,8 @@ void Controller::action(char command) {
         motorA.action(-145);
         motorB.action(-255);
     }
-    if (command == 'G') {
-        motorA.action(-255);
+    if (command == 'B') {
+        motorA.action(-247);
         motorB.action(-255);
     }
     if (command == 'C') {
