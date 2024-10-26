@@ -36,7 +36,7 @@ void Controller::begin() {
 
 void Controller::action(char command) {
     if (command == 'Q') {
-        motorA.action(145);
+        motorA.action(0);
         motorB.action(255);
     }
     if (command == 'F') {
@@ -45,11 +45,11 @@ void Controller::action(char command) {
     }
     if (command == 'E') {
         motorA.action(255);
-        motorB.action(145);
+        motorB.action(0);
     }
 
     if (command == 'L') {
-        motorA.action(0);
+        motorA.action(-255);
         motorB.action(255);
     }
     if (command == 'S') {
@@ -58,11 +58,11 @@ void Controller::action(char command) {
     }
     if (command == 'R') {
         motorA.action(255);
-        motorB.action(0);
+        motorB.action(-255);
     }
 
     if (command == 'Z') {
-        motorA.action(-145);
+        motorA.action(0);
         motorB.action(-255);
     }
     if (command == 'B') {
@@ -71,7 +71,7 @@ void Controller::action(char command) {
     }
     if (command == 'C') {
         motorA.action(-255);
-        motorB.action(-145);
+        motorB.action(0);
     }
 }
 
