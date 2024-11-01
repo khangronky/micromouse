@@ -34,88 +34,92 @@ void Controller::begin() {
     motorB.begin();
 }
 
-void Controller::action(char command) {
-    if (command == 'Q') {
-        motorA.action(0);
-        motorB.action(255);
-    }
+String Controller::manualAction(char command) { // For manual control
     if (command == 'F') {
-        motorA.action(247);
-        motorB.action(255);
-    }
-    if (command == 'E') {
         motorA.action(255);
+        motorB.action(255);
+        delay(500);
+        motorA.action(0);
         motorB.action(0);
+        return "ack";
     }
-
+    if (command == 'R') {
+        motorA.action(255);
+        motorB.action(-255);
+        delay(500);
+        motorA.action(0);
+        motorB.action(0);
+        return "ack";
+    }
     if (command == 'L') {
         motorA.action(-255);
         motorB.action(255);
+        delay(500);
+        motorA.action(0);
+        motorB.action(0);
+        return "ack";
     }
-    if (command == 'S') {
+    return "unknown";
+}
+
+void Controller::autoAction(char command) { // For automation
+    if (command == 'F') {
+        motorA.action(255);
+        motorB.action(255);
+        delay(500);
         motorA.action(0);
         motorB.action(0);
     }
     if (command == 'R') {
         motorA.action(255);
         motorB.action(-255);
-    }
-
-    if (command == 'Z') {
+        delay(500);
         motorA.action(0);
-        motorB.action(-255);
+        motorB.action(0);
     }
-    if (command == 'B') {
-        motorA.action(-247);
-        motorB.action(-255);
-    }
-    if (command == 'C') {
+    if (command == 'L') {
         motorA.action(-255);
+        motorB.action(255);
+        delay(500);
+        motorA.action(0);
         motorB.action(0);
     }
 }
 
-String Controller::action(String command) {
-    if (command == "moveForward") {
-        motorA.action(255);
-        motorB.action(255);
-        delay(500);
-        motorA.action(0);
-        motorB.action(0);
-        return "ack";
-    }
-    if (command == "turnRight") {
-        motorA.action(255);
-        motorB.action(-255);
-        delay(500);
-        motorA.action(0);
-        motorB.action(0);
-        return "ack";
-    }
-    if (command == "turnLeft") {
-        motorA.action(-255);
-        motorB.action(255);
-        delay(500);
-        motorA.action(0);
-        motorB.action(0);
-        return "ack";
-    }
+bool Controller::wallFront() {
+    // Implement sensor reading for front wall detection
+    return false; // Placeholder
+}
 
-    if (command == "wallFront") {
-        float ultrasonicDistance = ultrasonicSensor.getDistance();
-        if (ultrasonicDistance < threshold) return "true";
-        else return "false";
-    }
-    if (command == "wallRight") {
-        int irSensorBValue = irSensorB.getValue();
-        if (irSensorBValue < threshold) return "true";
-        else return "false";
-    }
-    if (command == "wallLeft") {
-        int irSensorAValue = irSensorA.getValue();
-        if (irSensorAValue < threshold) return "true";
-        else return "false";
-    }
+bool Controller::wallLeft() {
+    // Implement sensor reading for left wall detection
+    return false; // Placeholder
+}
 
-    return "undefined";
+bool Controller::wallRight() {
+    // Implement sensor reading for right wall detection
+    return false; // Placeholder
+}
+
+// void Controller::begin() {
+//     // Initialize motors and sensors
+//     motorA.begin();
+//     motorB.begin();
+// }
+
+void Controller::ackReset() {
+    // Implement reset acknowledgment
+    Serial.println("ackReset");
+}
+
+void Controller::moveForward() {
+    autoAction('F');
+}
+
+void Controller::turnRight() {
+    autoAction('R');
+}
+
+void Controller::turnLeft() {
+    autoAction('L');
 }

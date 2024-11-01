@@ -1,19 +1,13 @@
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
 
-#include <ArduinoSTL.h>
+#include <Arduino.h> // Correct include for Arduino functions and types
 
-#define MAZE_WIDTH 8
-#define MAZE_HEIGHT 8
-extern unsigned short bfs_map[MAZE_HEIGHT][MAZE_WIDTH];
-extern const unsigned short INF;
-extern uint8_t maze[MAZE_HEIGHT][MAZE_WIDTH];
-extern const char directions[];
-extern bool surrounds[3];
+#define MAZE_WIDTH 3
+#define MAZE_HEIGHT 10
 
-void setBit(uint8_t& byte, const int pos, const bool value);
-
-struct pos {
+class pos {
+public:
     int x, y;
     pos();
     pos(const int x, const int y);
@@ -23,20 +17,16 @@ struct pos {
     pos operator+(const pos& other);
 };
 
-extern pos startPos[4];
-extern pos goalPos[4];
-extern pos drs[4];
-
 extern pos currPos;
-extern int facing;
+extern pos startPos; // Corrected to be a single pos object
+extern pos goalPos[]; // Declared as an array
+extern uint8_t maze[MAZE_HEIGHT][MAZE_WIDTH]; // Declare maze as extern
+extern unsigned short bfs_map[MAZE_HEIGHT][MAZE_WIDTH]; // Declare bfs_map as extern
 
-bool isValid(const pos& p);
-bool isGoal(const pos& p);
-bool isFinish();
-void bfs();
-void st_bfs();
 void updateSurrounding();
+void bfs();
+bool isFinish();
 int getBestMove();
-void move(const int dir);
+void move(int direction);
 
-#endif
+#endif // ALGORITHM_H
