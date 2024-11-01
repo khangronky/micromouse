@@ -36,7 +36,7 @@ int facing = 1; // Declare and initialize facing (0: left, 1: up, 2: right, 3: d
 pos currPos;
 pos startPos(0, 0);
 pos goalPos[] = {pos(9, 2)};
-
+int testnotnec;
 // Check if a position is valid (within maze boundaries)
 bool isValid(const pos &p) {
     return ((p.x >= 0) && (p.y >= 0) && (p.x < MAZE_WIDTH) &&
