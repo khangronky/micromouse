@@ -39,6 +39,9 @@ void setup() {
     motorB.action(0);
 
     controller.automationTestRun();
+
+    delay(2000); // Delay for 2 seconds
+    controller.automationTest2();
 }
 
 void processCommand(char command) {

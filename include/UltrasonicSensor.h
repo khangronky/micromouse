@@ -1,16 +1,17 @@
-#ifndef ULTRASONIC_SENSOR_H
-#define ULTRASONIC_SENSOR_H
+#ifndef ULTRASONICSENSOR_H
+#define ULTRASONICSENSOR_H
+
+#include <Arduino.h>
 
 class UltrasonicSensor {
 public:
     UltrasonicSensor(int trigPin, int echoPin);
     void begin();
-    double getDistance(); // cm
+    long getDistance();
 
 private:
     int trigPin;
     int echoPin;
-    const double speedOfSound = 0.0343; // cm/us
 };
 
-#endif
+#endif // ULTRASONICSENSOR_H

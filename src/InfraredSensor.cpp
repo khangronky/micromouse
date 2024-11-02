@@ -1,14 +1,12 @@
-#include <Arduino.h>
 #include "InfraredSensor.h"
+#include <Arduino.h>
 
-InfraredSensor::InfraredSensor(int sensorPin)
-    : sensorPin(sensorPin) {}
+InfraredSensor::InfraredSensor(int pin) : pin(pin) {}
 
 void InfraredSensor::begin() {
-    pinMode(sensorPin, INPUT);
+    pinMode(pin, INPUT);
 }
 
-int InfraredSensor::getValue() {
-    sensorValue = analogRead(sensorPin);
-    return sensorValue;
+int InfraredSensor::read() {
+    return analogRead(pin);
 }

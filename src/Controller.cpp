@@ -78,3 +78,50 @@ void Controller::automationTestRun() {
 
     Serial.println("Automation test run completed.");
 }
+
+
+bool Controller::isObstacleFront() {
+    long distance = ultrasonicSensor.getDistance();
+    Serial.print("Front distance: ");
+    Serial.println(distance);
+    return distance < threshold;
+}
+
+bool Controller::isObstacleLeft() {
+    int value = irSensorA.read();
+    Serial.print("Left sensor value: ");
+    Serial.println(value);
+    return value < threshold;
+}
+
+bool Controller::isObstacleRight() {
+    int value = irSensorB.read();
+    Serial.print("Right sensor value: ");
+    Serial.println(value);
+    return value < threshold;
+}
+
+void Controller::automationTest2() {
+    Serial.println("Starting automation test run with wall-right method...");
+
+    while (true) {
+        if (!isObstacleRight()) {
+            manualAction('R'); // Turn right
+            delay(250);        // Adjusted delay for 90-degree turn
+            manualAction('F'); // Move forward
+            delay(1000);       // Delay for 1 second
+        } else if (!isObstacleFront()) {
+            manualAction('F'); // Move forward
+            delay(1000);       // Delay for 1 second
+        } else if (!isObstacleLeft()) {
+            manualAction('L'); // Turn left
+            delay(250);        // Adjusted delay for 90-degree turn
+        } else {
+            manualAction('S'); // Stop
+            Serial.println("Obstacle detected on all sides. Stopping.");
+            break;
+        }
+    }
+
+    Serial.println("Automation test run with wall-right method completed.");
+}
