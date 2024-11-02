@@ -1,30 +1,9 @@
-#include <Arduino.h>
-#include "InfraredSensor.h"
-#include "UltrasonicSensor.h"
-#include "Motor.h"
+#include "controller.h"
 
-#include "Controller.h"
-
-int sensorPinA = A0;
-int sensorPinB = A1;
-
-int trigPin = 3;
-int echoPin = 11;
-
-int threshold = 5;
-
-int ENA = 5;
-int IN1 = 6;
-int IN2 = 7;
-int IN3 = 9;
-int IN4 = 8;
-int ENB = 10;
-
+// Sensor and motor instances
 InfraredSensor irSensorA(sensorPinA);
 InfraredSensor irSensorB(sensorPinB);
 UltrasonicSensor ultrasonicSensor(trigPin, echoPin);
-Motor motorA(IN1, IN2, ENA);
-Motor motorB(IN3, IN4, ENB);
 
 void Controller::begin() {
     irSensorA.begin();
@@ -35,91 +14,67 @@ void Controller::begin() {
 }
 
 String Controller::manualAction(char command) { // For manual control
-    if (command == 'F') {
-        motorA.action(255);
-        motorB.action(255);
-        delay(500);
+    Serial.print("Controller action received command: ");
+    Serial.println(command);
+
+    if (command == 'Q') {
+        motorA.action(0);
+        motorB.action(150); // Motor B forward
+        Serial.println("Action: Q - Motor A stop, Motor B forward");
+    } else if (command == 'F') {
+        motorA.action(147);
+        motorB.action(150);
+        Serial.println("Action: F - Motor A forward, Motor B forward");
+    } else if (command == 'E') {
+        motorA.action(147);
+        motorB.action(0);
+        Serial.println("Action: E - Motor A forward, Motor B stop");
+    } else if (command == 'L') {
+        motorA.action(-147);
+        motorB.action(150);
+        Serial.println("Action: L - Motor A backward, Motor B forward");
+    } else if (command == 'S') {
         motorA.action(0);
         motorB.action(0);
-        return "ack";
-    }
-    if (command == 'R') {
-        motorA.action(255);
-        motorB.action(-255);
-        delay(500);
+        Serial.println("Action: S - Motor A stop, Motor B stop");
+    } else if (command == 'R') {
+        motorA.action(170);
+        motorB.action(-150);
+        Serial.println("Action: R - Motor A forward, Motor B backward");
+    } else if (command == 'Z') {
         motorA.action(0);
+        motorB.action(-150);
+        Serial.println("Action: Z - Motor A stop, Motor B backward");
+    } else if (command == 'B') {
+        motorA.action(-147);
+        motorB.action(-150);
+        Serial.println("Action: B - Motor A backward, Motor B backward");
+    } else if (command == 'C') {
+        motorA.action(-147);
         motorB.action(0);
-        return "ack";
+        Serial.println("Action: C - Motor A backward, Motor B stop");
+    } else {
+        Serial.println("Unknown command");
     }
-    if (command == 'L') {
-        motorA.action(-255);
-        motorB.action(255);
-        delay(500);
-        motorA.action(0);
-        motorB.action(0);
-        return "ack";
-    }
-    return "unknown";
+    return "Command executed";
 }
 
-void Controller::autoAction(char command) { // For automation
-    if (command == 'F') {
-        motorA.action(255);
-        motorB.action(255);
-        delay(500);
-        motorA.action(0);
-        motorB.action(0);
-    }
-    if (command == 'R') {
-        motorA.action(255);
-        motorB.action(-255);
-        delay(500);
-        motorA.action(0);
-        motorB.action(0);
-    }
-    if (command == 'L') {
-        motorA.action(-255);
-        motorB.action(255);
-        delay(500);
-        motorA.action(0);
-        motorB.action(0);
-    }
-}
+void Controller::automationTestRun() {
+    Serial.println("Starting automation test run...");
+    delay(2000); // Delay for 2 second
 
-bool Controller::wallFront() {
-    // Implement sensor reading for front wall detection
-    return false; // Placeholder
-}
+    // Example sequence of commands for automation test run
+    manualAction('F'); // Move forward
+    delay(1000);       // Delay for 1 second
+    manualAction('R'); // Turn left
+    delay(250 );        // Delay for 0.5 seconds
+    manualAction('F'); // Move forward
+    delay(700);       // Delay for 1 second
+    manualAction('R'); // Turn right
+    delay(250);        // Delay for 0.5 seconds
+    manualAction('F'); // Move forward
+    delay(500);       // Delay for 1 second
+    manualAction('S'); // Stop
 
-bool Controller::wallLeft() {
-    // Implement sensor reading for left wall detection
-    return false; // Placeholder
-}
-
-bool Controller::wallRight() {
-    // Implement sensor reading for right wall detection
-    return false; // Placeholder
-}
-
-// void Controller::begin() {
-//     // Initialize motors and sensors
-//     motorA.begin();
-//     motorB.begin();
-// }
-
-void Controller::ackReset() {
-    // Implement reset acknowledgment
-    Serial.println("ackReset");
-}
-
-void Controller::moveForward() {
-    autoAction('F');
-}
-
-void Controller::turnRight() {
-    autoAction('R');
-}
-
-void Controller::turnLeft() {
-    autoAction('L');
+    Serial.println("Automation test run completed.");
 }

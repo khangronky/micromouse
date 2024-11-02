@@ -2,20 +2,32 @@
 #define CONTROLLER_H
 
 #include <Arduino.h>
+#include "InfraredSensor.h"
+#include "UltrasonicSensor.h"
+#include "Motor.h"
+
+extern int sensorPinA;
+extern int sensorPinB;
+extern int trigPin;
+extern int echoPin;
+extern int threshold;
+
+extern int ENA;
+extern int IN1;
+extern int IN2;
+
+extern int IN3;
+extern int IN4;
+extern int ENB;
+
+extern Motor motorA;
+extern Motor motorB;
 
 class Controller {
-
 public:
-    static void begin();
-    static String manualAction(char command); // For manual control
-    static void autoAction(char command); // For automation
-    static bool wallFront();
-    static bool wallLeft();
-    static bool wallRight();
-    static void ackReset();
-    static void moveForward();
-    static void turnRight();
-    static void turnLeft();
+    void begin();
+    String manualAction(char command);
+    void automationTestRun();
 };
 
-#endif
+#endif // CONTROLLER_H
