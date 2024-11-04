@@ -162,10 +162,11 @@ void Controller::automationTest18() { //Threshold Distance Check
         if (!frontObstacle && !leftObstacle && !rightObstacle) {
             manualAction('S'); // Stop
             delay(200); // Delay between sensor reads
+            manualAction('F'); // Move forward one cell
+            delay(420); 
             manualAction('R'); // Turn right
             delay(220);        // Adjusted delay for 90-degree turn
-            manualAction('F'); // Move forward one cell
-            delay(420);        // Calibrated delay for moving forward one cell (20 cm)
+            
         } else if (!frontObstacle && !rightObstacle && leftObstacle) {
             manualAction('S'); // Stop
             delay(1000);        // Calibrated delay for moving forward one cell (20 cm)
