@@ -9,7 +9,9 @@ int sensorPinA = A0; // Infrared sensor left
 int sensorPinB = A1; // Infrared sensor right
 int trigPin = 3;     // Ultrasonic sensor trigger
 int echoPin = 11;    // Ultrasonic sensor echo
-int threshold = 200; // Threshold for infrared sensor detection
+
+int ultrasonicThresholdCm = 3;  // Ultrasonic threshold in centimeters
+int infraredThreshold = 120;     // Infrared threshold (analog value)
 
 int ENA = 5; // Motor A speed control
 int IN1 = 6; // Motor A direction control
@@ -38,10 +40,11 @@ void setup() {
     motorA.action(0);
     motorB.action(0);
 
-    controller.automationTestRun();
+    // controller.automationTestRun15();
 
-    delay(2000); // Delay for 2 seconds
-    controller.automationTest2();
+    // controller.printSensorData();
+    
+    controller.automationTest18();
 }
 
 void processCommand(char command) {
@@ -56,10 +59,5 @@ void loop() {
         processCommand(command);
     }
 
-    if (bluetooth.available() > 0) {
-        char command = bluetooth.read();
-        Serial.print("Bluetooth command: ");
-        Serial.println(command);
-        processCommand(command);
-    }
+    
 }

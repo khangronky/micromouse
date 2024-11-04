@@ -10,7 +10,8 @@ extern int sensorPinA;
 extern int sensorPinB;
 extern int trigPin;
 extern int echoPin;
-extern int threshold;
+extern int ultrasonicThresholdCm; // Ultrasonic threshold in centimeters
+extern int infraredThreshold;     // Infrared threshold (analog value)
 extern int ENA;
 extern int IN1;
 extern int IN2;
@@ -26,10 +27,14 @@ public:
     void begin();
     String manualAction(char command);
     void automationTestRun();
+    void automationTestRun15();
+    void automationTest18();
     void automationTest2(); // Declaration of the new automation test function
     bool isObstacleFront();
     bool isObstacleLeft();
     bool isObstacleRight();
+    void printSensorData(); // Declaration of the function to print sensor data
+
 };
 
 #endif // CONTROLLER_H
