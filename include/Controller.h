@@ -29,12 +29,12 @@ public:
     void automationTestRun();
     void automationTestRun15();
     void automationTest18();
-    void automationTest2(); // Declaration of the new automation test function
+    void automationTest2(); 
     bool isObstacleFront();
     bool isObstacleLeft();
     bool isObstacleRight();
     void printSensorData(); // Declaration of the function to print sensor data
-
+    void automationTest3(); // Automation journey cell by cell
 };
 
 #endif // CONTROLLER_H

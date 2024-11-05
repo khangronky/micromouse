@@ -263,3 +263,5 @@ void Controller::printSensorData() {
     Serial.print(rightValue);
     Serial.println(" (analog)");
 }
+
+void Controller::automationTest3(){}
