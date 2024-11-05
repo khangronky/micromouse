@@ -10,7 +10,7 @@ int sensorPinB = A1; // Infrared sensor right
 int trigPin = 3;     // Ultrasonic sensor trigger
 int echoPin = 11;    // Ultrasonic sensor echo
 
-int ultrasonicThresholdCm = 5;  // Ultrasonic threshold in centimeters
+int ultrasonicThresholdCm = 12;  // Ultrasonic threshold in centimeters
 int infraredThreshold = 30;     // Infrared threshold (analog value) False: 120, 150, 100,70
 
 int ENA = 5; // Motor A speed control
