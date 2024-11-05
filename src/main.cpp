@@ -10,8 +10,8 @@ int sensorPinB = A1; // Infrared sensor right
 int trigPin = 3;     // Ultrasonic sensor trigger
 int echoPin = 11;    // Ultrasonic sensor echo
 
-int ultrasonicThresholdCm = 3;  // Ultrasonic threshold in centimeters
-int infraredThreshold = 20;     // Infrared threshold (analog value) False: 120, 150, 100,70
+int ultrasonicThresholdCm = 5;  // Ultrasonic threshold in centimeters
+int infraredThreshold = 30;     // Infrared threshold (analog value) False: 120, 150, 100,70
 
 int ENA = 5; // Motor A speed control
 int IN1 = 6; // Motor A direction control
@@ -40,11 +40,11 @@ void setup() {
     motorA.action(0);
     motorB.action(0);
 
-    // controller.automationTestRun15();
+    //controller.automationTestRun15();
 
     // controller.printSensorData();
     
-    controller.automationTest2();
+    //controller.automationTest2();
 }
 
 void processCommand(char command) {

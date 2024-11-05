@@ -19,38 +19,38 @@ String Controller::manualAction(char command) { // For manual control
 
     if (command == 'Q') {
         motorA.action(0);
-        motorB.action(150); // Motor B forward
+        motorB.action(88); // Motor B forward
         Serial.println("Action: Q - Motor A stop, Motor B forward");
     } else if (command == 'F') {
-        motorA.action(150);
-        motorB.action(138);
+        motorA.action(100);
+        motorB.action(88);
         Serial.println("Action: F - Motor A forward, Motor B forward");
     } else if (command == 'E') {
-        motorA.action(127);
+        motorA.action(100);
         motorB.action(0);
         Serial.println("Action: E - Motor A forward, Motor B stop");
     } else if (command == 'L') {
-        motorA.action(-147);
-        motorB.action(150);
+        motorA.action(-100);
+        motorB.action(82);
         Serial.println("Action: L - Motor A backward, Motor B forward");
     } else if (command == 'S') {
         motorA.action(0);
         motorB.action(0);
         Serial.println("Action: S - Motor A stop, Motor B stop");
     } else if (command == 'R') {
-        motorA.action(140);
-        motorB.action(-170);
+        motorA.action(90);
+        motorB.action(-72);
         Serial.println("Action: R - Motor A forward, Motor B backward");
     } else if (command == 'Z') {
         motorA.action(0);
         motorB.action(-150);
         Serial.println("Action: Z - Motor A stop, Motor B backward");
     } else if (command == 'B') {
-        motorA.action(-147);
-        motorB.action(-150);
+        motorA.action(-100);
+        motorB.action(-88);
         Serial.println("Action: B - Motor A backward, Motor B backward");
     } else if (command == 'C') {
-        motorA.action(-147);
+        motorA.action(-100);
         motorB.action(0);
         Serial.println("Action: C - Motor A backward, Motor B stop");
     } else {
@@ -160,6 +160,7 @@ void Controller::automationTest18() { //Threshold Distance Check
         bool rightObstacle = isObstacleRight();
 
         if (!frontObstacle && !leftObstacle && !rightObstacle) {
+            Serial.print("Case 1: -> Move one cell then turn right ");
             manualAction('S'); // Stop
             delay(200); // Delay between sensor reads
             manualAction('F'); // Move forward one cell
@@ -203,13 +204,14 @@ void Controller::automationTest2() {
         bool rightObstacle = isObstacleRight();
 
         if (!frontObstacle && !leftObstacle && !rightObstacle) {
+            
+            Serial.print("Case 1: -> Move one cell");
             manualAction('S'); // Stop
             delay(200); // Delay between sensor reads
-            manualAction('R'); // Turn right
-            delay(220);        // Adjusted delay for 90-degree turn
             manualAction('F'); // Move forward one cell
             delay(420);        // Calibrated delay for moving forward one cell (20 cm)
         } else if (!frontObstacle && !rightObstacle && leftObstacle) {
+            Serial.print("Case 2: -> turn right and foward 1 cell ");
             manualAction('S'); // Stop
             delay(200);
             manualAction('R'); // Turn right
