@@ -26,7 +26,8 @@ UltrasonicSensor ultrasonicSensor(trigPin, echoPin);
 Motor motorA(IN1, IN2, ENA);
 Motor motorB(IN3, IN4, ENB);
 
-void Controller::begin() {
+void Controller::begin()
+{
     irSensorA.begin();
     irSensorB.begin();
     ultrasonicSensor.begin();
@@ -34,49 +35,61 @@ void Controller::begin() {
     motorB.begin();
 }
 
-void Controller::action(char command) {
-    if (command == 'Q') {
+void Controller::action(char command)
+{
+    if (command == 'Q')
+    {
         motorA.action(0);
         motorB.action(255);
     }
-    if (command == 'F') {
+    if (command == 'F')
+    {
         motorA.action(247);
         motorB.action(255);
     }
-    if (command == 'E') {
+    if (command == 'E')
+    {
         motorA.action(255);
         motorB.action(0);
     }
 
-    if (command == 'L') {
+    if (command == 'L')
+    {
         motorA.action(-255);
         motorB.action(255);
     }
-    if (command == 'S') {
+    if (command == 'S')
+    {
         motorA.action(0);
         motorB.action(0);
     }
-    if (command == 'R') {
+    if (command == 'R')
+    {
         motorA.action(255);
         motorB.action(-255);
     }
 
-    if (command == 'Z') {
+    if (command == 'Z')
+    {
         motorA.action(0);
         motorB.action(-255);
     }
-    if (command == 'B') {
+    if (command == 'B')
+    {
         motorA.action(-247);
         motorB.action(-255);
     }
-    if (command == 'C') {
+    if (command == 'C')
+    {
         motorA.action(-255);
         motorB.action(0);
     }
 }
 
-String Controller::action(String command) {
-    if (command == "moveForward") {
+String Controller::action(String command)
+{
+    if (command == "moveForward")
+    {
         motorA.action(255);
         motorB.action(255);
         delay(500);
@@ -84,7 +97,8 @@ String Controller::action(String command) {
         motorB.action(0);
         return "ack";
     }
-    if (command == "turnRight") {
+    if (command == "turnRight")
+    {
         motorA.action(255);
         motorB.action(-255);
         delay(500);
@@ -92,7 +106,8 @@ String Controller::action(String command) {
         motorB.action(0);
         return "ack";
     }
-    if (command == "turnLeft") {
+    if (command == "turnLeft")
+    {
         motorA.action(-255);
         motorB.action(255);
         delay(500);
@@ -101,20 +116,29 @@ String Controller::action(String command) {
         return "ack";
     }
 
-    if (command == "wallFront") {
+    if (command == "wallFront")
+    {
         float ultrasonicDistance = ultrasonicSensor.getDistance();
-        if (ultrasonicDistance < threshold) return "true";
-        else return "false";
+        if (ultrasonicDistance < threshold)
+            return "true";
+        else
+            return "false";
     }
-    if (command == "wallRight") {
+    if (command == "wallRight")
+    {
         int irSensorBValue = irSensorB.getValue();
-        if (irSensorBValue < threshold) return "true";
-        else return "false";
+        if (irSensorBValue < threshold)
+            return "true";
+        else
+            return "false";
     }
-    if (command == "wallLeft") {
+    if (command == "wallLeft")
+    {
         int irSensorAValue = irSensorA.getValue();
-        if (irSensorAValue < threshold) return "true";
-        else return "false";
+        if (irSensorAValue < threshold)
+            return "true";
+        else
+            return "false";
     }
 
     return "undefined";
